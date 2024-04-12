@@ -130,8 +130,15 @@ namespace CustomMath
         }
         public static float Angle(Vec3 from, Vec3 to)
         {
-            throw new NotImplementedException();
+            float result = Mathf.Acos((Dot(from, to)) / (Magnitude(from) * Magnitude(to))); //devulve el valor en radianes
+
+            return result * Mathf.Rad2Deg; //valor en grados
         }
+        //Con el producto punto obtenemos el valor de cuanto se "superponen" los dos vectores en la misma dirección. Luego dividimos por la multiplicacion de sus magnitudes
+        //para normalizar el producto punto y obtener una medida del coseno del ángulo que no depende de la magnitud de los vectores individuales. 
+        //Al dividir el producto punto por el producto de las magnitudes, obtenemos el coseno del ángulo entre los vectores. Si necesitamos el valor del ángulo en sí utilizamos
+        //arccos que es la función inversa del cos.
+
         public static Vec3 ClampMagnitude(Vec3 vector, float maxLength)
         {
             throw new NotImplementedException();
