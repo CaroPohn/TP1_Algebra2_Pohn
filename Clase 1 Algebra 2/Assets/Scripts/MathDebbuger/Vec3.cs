@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Rendering.VirtualTexturing;
+using System.Numerics;
 namespace CustomMath
 {
     public struct Vec3 : IEquatable<Vec3>
@@ -13,7 +15,7 @@ namespace CustomMath
 
         public float sqrMagnitude { get { throw new NotImplementedException(); } }
         public Vector3 normalized { get { throw new NotImplementedException(); } }
-        public float magnitude { get { throw new NotImplementedException(); } }
+        public float magnitude { get { return Mathf.Sqrt((MathF.Sqrt(x)) + (MathF.Sqrt(y)) + (MathF.Sqrt(z))); } }
         #endregion
 
         #region constants
@@ -141,11 +143,20 @@ namespace CustomMath
 
         public static Vec3 ClampMagnitude(Vec3 vector, float maxLength)
         {
-            throw new NotImplementedException();
+            if (Magnitude(vector) > maxLength)
+            {
+                vector.Normalize();
+                vector = vector * maxLength;
+
+                return vector;
+            }
+            else
+                return vector;
         }
+        //Limita la magnitud de un vector a un máximo, si la magnitud del vector es mayor que el máximo lo ajusta, si es menor devuelve el mismo vector porque esta dentro del límite
         public static float Magnitude(Vec3 vector)
         {
-            return Mathf.Sqrt((MathF.Sqrt(vector.x)) + (MathF.Sqrt(vector.y)) + (MathF.Sqrt(vector.z)));
+            return Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
         }
         public static Vec3 Cross(Vec3 a, Vec3 b)
         {
@@ -197,7 +208,14 @@ namespace CustomMath
         }
         public void Normalize()
         {
-            throw new NotImplementedException();
+            float vecMagnitude = Magnitude(this);
+
+            if (vecMagnitude != 0.0f)
+            {
+                x /= vecMagnitude;
+                y /= vecMagnitude;
+                z /= vecMagnitude;
+            }
         }
         #endregion
 
