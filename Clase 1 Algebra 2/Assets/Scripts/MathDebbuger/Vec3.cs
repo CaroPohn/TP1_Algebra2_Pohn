@@ -199,21 +199,37 @@ namespace CustomMath
         }
         //Lerp is "Linear Interpolation". Se utiliza para interpolar (o "mezclar") suavemente entre dos valores, es decir, encontrar valores intermedios entre ambos vectores.
         //Se asume una relación lineal entre los puntos de los datos conocidos para estimar valores intermedios. La interpolación lineal se realiza utilizando una línea recta
-        //que conecta dos puntos de datos conocidos.
+        //que conecta dos puntos de datos conocidos. Utiliza la fórmula de interpolación linear estándar (1 - t) * a + t * b pero por cada componente del vector.
         //Esta función toma dos vectores 3, a y b, como argumentos, así como un factor de interpolación t que varía entre 0 y 1.
         //Cuando t = 0 el resultado es igual a "a" y cuando t = 1 el resultado es igual a "b". 
         public static Vec3 LerpUnclamped(Vec3 a, Vec3 b, float t)
         {
-            throw new NotImplementedException();
+            float newVecX = (1 - t) * a.x + t * b.x;
+            float newVecY = (1 - t) * a.y + t * b.y;
+            float newVecZ = (1 - t) * a.z + t * b.z;
+
+            return new Vec3(newVecX, newVecY, newVecZ);
         }
+        //Cumple la misma función que Lerp solo que permite que el factor de interpolación t esté fuera del rango [0, 1], lo que puede resultar en resultados más allá de los
+        //límites de los vectores iniciales y finales. Utiliza la fórmula de interpolación linear estándar (1 - t) * a + t * b pero por cada componente del vector.
         public static Vec3 Max(Vec3 a, Vec3 b)
         {
-            throw new NotImplementedException();
+            float maxX = (a.x > b.x) ? a.x : b.x;
+            float maxY = (a.y > b.y) ? a.y : b.y;
+            float maxZ = (a.z > b.z) ? a.z : b.z;
+
+            return new Vec3(maxX, maxY, maxZ);
         }
+        //Devuelve un vec3 con los componentes x, y, z mayores entre los dos vectores.
         public static Vec3 Min(Vec3 a, Vec3 b)
         {
-            throw new NotImplementedException();
+            float minX = (a.x < b.x) ? a.x : b.x;
+            float minY = (a.y < b.y) ? a.y : b.y;
+            float minZ = (a.z < b.z) ? a.z : b.z;
+
+            return new Vec3(minX, minY, minZ);
         }
+        //Devuelve un vec3 con los componentes x, y, z menores entre los dos vectores.
         public static float SqrMagnitude(Vec3 vector)
         {
             throw new NotImplementedException();
@@ -234,7 +250,9 @@ namespace CustomMath
         }
         public void Scale(Vec3 scale)
         {
-            throw new NotImplementedException();
+            x *= scale.x;
+            y *= scale.y;
+            z *= scale.z;
         }
         public void Normalize()
         {
