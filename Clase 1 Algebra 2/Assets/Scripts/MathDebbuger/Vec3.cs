@@ -187,8 +187,21 @@ namespace CustomMath
         }
         public static Vec3 Lerp(Vec3 a, Vec3 b, float t)
         {
-            throw new NotImplementedException();
+            t = Mathf.Clamp01(t); //Se asegura de que el factor de interpolación este si o si entre 0 y 1. Es lo mismo que hacer "Mathf.Max(0f, Mathf.Min(1f, t));"
+                                  //MAXIMO devuelve el valor máximo entre 0 y el otro valor que es el MINIMO entre 1 y t. Si t es menor que 0 Max devuelve 0 y si es 
+                                  //mas grande que 1 Min devuelve 1
+
+            float newVecX = (1 - t) * a.x + t * b.x;
+            float newVecY = (1 - t) * a.y + t * b.y;
+            float newVecZ = (1 - t) * a.z + t * b.z;
+
+            return new Vec3(newVecX, newVecY, newVecZ);
         }
+        //Lerp is "Linear Interpolation". Se utiliza para interpolar (o "mezclar") suavemente entre dos valores, es decir, encontrar valores intermedios entre ambos vectores.
+        //Se asume una relación lineal entre los puntos de los datos conocidos para estimar valores intermedios. La interpolación lineal se realiza utilizando una línea recta
+        //que conecta dos puntos de datos conocidos.
+        //Esta función toma dos vectores 3, a y b, como argumentos, así como un factor de interpolación t que varía entre 0 y 1.
+        //Cuando t = 0 el resultado es igual a "a" y cuando t = 1 el resultado es igual a "b". 
         public static Vec3 LerpUnclamped(Vec3 a, Vec3 b, float t)
         {
             throw new NotImplementedException();
@@ -215,7 +228,9 @@ namespace CustomMath
         }
         public void Set(float newX, float newY, float newZ)
         {
-            throw new NotImplementedException();
+            x = newX; 
+            y = newY; 
+            z = newZ;
         }
         public void Scale(Vec3 scale)
         {
