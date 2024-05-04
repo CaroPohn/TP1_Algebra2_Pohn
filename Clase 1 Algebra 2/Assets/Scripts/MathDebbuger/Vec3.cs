@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.Rendering.VirtualTexturing;
 using System.Numerics;
+using Unity.VisualScripting;
+using static UnityEditor.PlayerSettings;
 namespace CustomMath
 {
     public struct Vec3 : IEquatable<Vec3>
@@ -160,12 +162,25 @@ namespace CustomMath
         }
         public static Vec3 Cross(Vec3 a, Vec3 b)
         {
-            throw new NotImplementedException();
+            float newVecX = a.y * b.z - a.z * b.y;
+            float newVecY = a.z * b.x - a.x * b.z;
+            float newVecZ = a.x * b.y - a.y * b.x;
+
+            return new Vec3(newVecX, newVecY, newVecZ);
         }
+        //Da como resultado un vector perpendicular a los vectores que se multiplican, y por lo tanto normal al plano que los contiene. 
+        //La direccion del vector resultante depende de el orden en el que se multipliquen los vectores A y B, ya que el producto cruz no es conmutativo al ser producto matricial.
         public static float Distance(Vec3 a, Vec3 b)
         {
-            throw new NotImplementedException();
+            float xDiference = b.x - a.x;
+            float yDiference = b.y - a.y;
+            float zDiference = b.z - a.z;
+
+            return Mathf.Sqrt(xDiference * xDiference + yDiference * yDiference + zDiference * zDiference);
         }
+        //Se basa en el teorema de Pitágoras, que establece que en un triángulo rectángulo, el cuadrado de la longitud de la hipotenusa es igual a la suma de los cuadrados
+        //de las longitudes de los otros dos lados. Si lo pensamos de esa manera la hipotenusa de un triángulo rectángulo es la distancia que hay entre los dos catetos (que pueden
+        //ser vistos como vectores. Esto es visto en dos dimensiones, pero la fórmula de la distancia euclideana nos permite extenderlo a múltiples dimensiones.
         public static float Dot(Vec3 a, Vec3 b)
         {
             return (a.x * b.x) + (a.y * b.y) + (a.x * b.x);
