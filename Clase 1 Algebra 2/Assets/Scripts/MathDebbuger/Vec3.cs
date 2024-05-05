@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.Rendering.VirtualTexturing;
-using System.Numerics;
-using Unity.VisualScripting;
-using static UnityEditor.PlayerSettings;
+
 namespace CustomMath
 {
     public struct Vec3 : IEquatable<Vec3>
@@ -15,9 +12,9 @@ namespace CustomMath
         public float y;
         public float z;
 
-        public float sqrMagnitude { get { throw new NotImplementedException(); } }
-        public Vector3 normalized { get { throw new NotImplementedException(); } }
-        public float magnitude { get { return Mathf.Sqrt((MathF.Sqrt(x)) + (MathF.Sqrt(y)) + (MathF.Sqrt(z))); } }
+        public float sqrMagnitude { get { return (x * x + y * y + z * z); } }
+        public Vector3 normalized { get { return new Vector3(x / magnitude, y / magnitude, z / magnitude); } }
+        public float magnitude { get { return Mathf.Sqrt(sqrMagnitude); } }
         #endregion
 
         #region constants
@@ -232,7 +229,7 @@ namespace CustomMath
         //Devuelve un vec3 con los componentes x, y, z menores entre los dos vectores.
         public static float SqrMagnitude(Vec3 vector)
         {
-            throw new NotImplementedException();
+            return vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
         }
         public static Vec3 Project(Vec3 vector, Vec3 onNormal) 
         {
