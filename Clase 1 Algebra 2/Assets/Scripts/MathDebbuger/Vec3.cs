@@ -231,13 +231,19 @@ namespace CustomMath
         {
             return vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
         }
-        public static Vec3 Project(Vec3 vector, Vec3 onNormal) 
+        public static Vec3 Project(Vec3 vector, Vec3 onNormal)
         {
-            throw new NotImplementedException();
+            float dotProduct = Dot(vector, onNormal);
+            float sqrMagnitude = SqrMagnitude(onNormal);
+            float projScalar = dotProduct / sqrMagnitude;
+
+            return onNormal * projScalar;
         }
-        public static Vec3 Reflect(Vec3 inDirection, Vec3 inNormal) 
+        public static Vec3 Reflect(Vec3 inDirection, Vec3 inNormal)
         {
-            throw new NotImplementedException();
+            float dotProduct = Dot(inDirection, inNormal);
+
+            return inDirection - 2 * dotProduct * inNormal;
         }
         public void Set(float newX, float newY, float newZ)
         {
