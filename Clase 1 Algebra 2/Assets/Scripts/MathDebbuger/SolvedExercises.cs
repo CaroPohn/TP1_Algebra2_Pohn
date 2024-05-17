@@ -49,6 +49,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 7:
                 {
+                    vectorC = Exercise7();
                     break;
                 }
             case 8:
@@ -103,6 +104,11 @@ public class SolvedExercises : MonoBehaviour
     private Vec3 Exercise6()
     {
         return Vec3.Max(vectorA, vectorB);
+    }
+
+    private Vec3 Exercise7()
+    {
+        return Vec3.Project(vectorA, vectorB);
     }
 
     private void OnDrawGizmos()

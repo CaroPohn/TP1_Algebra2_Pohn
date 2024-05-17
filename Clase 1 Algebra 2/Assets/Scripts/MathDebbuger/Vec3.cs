@@ -181,7 +181,7 @@ namespace CustomMath
         //ser vistos como vectores. Esto es visto en dos dimensiones, pero la fórmula de la distancia euclideana nos permite extenderlo a múltiples dimensiones.
         public static float Dot(Vec3 a, Vec3 b)
         {
-            return (a.x * b.x) + (a.y * b.y) + (a.x * b.x);
+            return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
         }
         public static Vec3 Lerp(Vec3 a, Vec3 b, float t)
         {
@@ -234,8 +234,8 @@ namespace CustomMath
         }
         public static Vec3 Project(Vec3 vector, Vec3 onNormal)
         {
-            float dotProduct = Dot(vector, onNormal);
             float sqrMagnitude = SqrMagnitude(onNormal);
+            float dotProduct = Dot(vector, onNormal);
             float projScalar = dotProduct / sqrMagnitude;
 
             return onNormal * projScalar;
