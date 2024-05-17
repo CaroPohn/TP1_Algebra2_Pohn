@@ -44,6 +44,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 6:
                 {
+                    vectorC = Exercise6();
                     break;
                 }
             case 7:
@@ -99,6 +100,10 @@ public class SolvedExercises : MonoBehaviour
         return Vec3.Lerp(vectorA, vectorB, timeCounter);
     }
 
+    private Vec3 Exercise6()
+    {
+        return Vec3.Max(vectorA, vectorB);
+    }
 
     private void OnDrawGizmos()
     {
