@@ -54,6 +54,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 8:
                 {
+                    vectorC = Exercise8();
                     break;
                 }
             case 9:
@@ -111,6 +112,16 @@ public class SolvedExercises : MonoBehaviour
     private Vec3 Exercise7()
     {
         return Vec3.Project(vectorA, vectorB);
+    }
+
+    private Vec3 Exercise8()
+    {
+        Vec3 result = Vec3.Lerp(vectorA, vectorB, 0.5f);
+        result.Normalize();
+
+        Vec3 scaledResult = result * Vec3.Distance(vectorA, vectorB);
+
+        return scaledResult;
     }
 
     private Vec3 Exercise9()
