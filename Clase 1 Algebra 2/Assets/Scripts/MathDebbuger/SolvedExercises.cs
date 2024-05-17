@@ -58,6 +58,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 9:
                 {
+                    vectorC = Exercise9();
                     break;
                 }
             case 10:
@@ -109,6 +110,13 @@ public class SolvedExercises : MonoBehaviour
     private Vec3 Exercise7()
     {
         return Vec3.Project(vectorA, vectorB);
+    }
+
+    private Vec3 Exercise9()
+    {
+        vectorB.Normalize();
+
+        return Vec3.Reflect(vectorA, vectorB);
     }
 
     private void OnDrawGizmos()
