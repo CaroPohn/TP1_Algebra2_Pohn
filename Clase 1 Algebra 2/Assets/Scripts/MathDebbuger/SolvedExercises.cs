@@ -32,6 +32,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 4:
                 {
+                    vectorC = Exercise4();
                     break;
                 }
             case 5:
@@ -77,6 +78,11 @@ public class SolvedExercises : MonoBehaviour
         result.Scale(vectorB);
 
         return result;
+    }
+
+    private Vec3 Exercise4()
+    {
+        return Vec3.Cross(vectorB, vectorA);
     }
 
     private void OnDrawGizmos()
