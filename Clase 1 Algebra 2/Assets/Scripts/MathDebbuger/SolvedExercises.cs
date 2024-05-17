@@ -63,6 +63,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 10:
                 {
+                    vectorC = Exercise10();
                     break;
                 }
         }
@@ -117,6 +118,17 @@ public class SolvedExercises : MonoBehaviour
         vectorB.Normalize();
 
         return Vec3.Reflect(vectorA, vectorB);
+    }
+
+    private Vec3 Exercise10()
+    {
+        float duration = 10.0f;
+        timeCounter += Time.deltaTime;
+
+        if (timeCounter >= duration)
+            timeCounter = 0.0f;
+
+        return Vec3.LerpUnclamped(vectorB, vectorA, timeCounter);
     }
 
     private void OnDrawGizmos()
