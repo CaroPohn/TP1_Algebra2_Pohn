@@ -22,6 +22,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 2:
                 {
+                    vectorC = Exercise2();
                     break;
                 }
             case 3:
@@ -62,6 +63,11 @@ public class SolvedExercises : MonoBehaviour
     private Vec3 Exercise1()
     {
         return vectorA + vectorB;
+    }
+
+    private Vec3 Exercise2()
+    {
+        return vectorB - vectorA;
     }
 
     private void OnDrawGizmos()
