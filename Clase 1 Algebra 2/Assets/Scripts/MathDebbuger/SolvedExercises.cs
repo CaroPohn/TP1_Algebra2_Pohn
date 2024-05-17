@@ -11,6 +11,8 @@ public class SolvedExercises : MonoBehaviour
     [SerializeField] private Vec3 vectorB;
     [SerializeField] private Vec3 vectorC;
 
+    private float timeCounter = 0.0f;
+
     private void Update()
     {
         switch (exerciseNumber)
@@ -37,6 +39,7 @@ public class SolvedExercises : MonoBehaviour
                 }
             case 5:
                 {
+                    vectorC = Exercise5();
                     break;
                 }
             case 6:
@@ -84,6 +87,18 @@ public class SolvedExercises : MonoBehaviour
     {
         return Vec3.Cross(vectorB, vectorA);
     }
+
+    private Vec3 Exercise5()
+    {
+        float duration = 1.0f;
+        timeCounter += Time.deltaTime;
+
+        if (timeCounter >= duration)
+            timeCounter = 0.0f;
+
+        return Vec3.Lerp(vectorA, vectorB, timeCounter);
+    }
+
 
     private void OnDrawGizmos()
     {
