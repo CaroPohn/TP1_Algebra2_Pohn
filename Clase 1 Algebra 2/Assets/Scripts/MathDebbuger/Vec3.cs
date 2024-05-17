@@ -5,12 +5,13 @@ using System;
 
 namespace CustomMath
 {
+    [System.Serializable]
     public struct Vec3 : IEquatable<Vec3>
     {
         #region Variables
-        public float x;
-        public float y;
-        public float z;
+        [SerializeField] public float x;
+        [SerializeField] public float y;
+        [SerializeField] public float z;
 
         public float sqrMagnitude { get { return (x * x + y * y + z * z); } }
         public Vector3 normalized { get { return new Vector3(x / magnitude, y / magnitude, z / magnitude); } }
